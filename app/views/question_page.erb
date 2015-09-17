@@ -1,17 +1,19 @@
 <section id="question-container" class='clear'>
   <div id="question-header">
     <p>
+      <div class="col-md-2"></div>
     <span id="question-title"><%= @question.title %></span>
     <%  %>
     <span id="question-author"><%= @question.user.first_name%></span>
     <span id="question-date">Created at <%= @question.created_at.strftime("%m/%d/%Y") %></span>
     </p>
     <!-- BELOW: coordinate route link with slice 4  -->
+    <div class="col-md-2"></div>
     Total votes: <span id="total-question-votes"><%= @question.all_votes %></span>
-
 
       <a href='/questions/<%=@question.id %>/down_vote' class="vote-question-button-down">down</a>
     <a href='/questions/<%=@question.id %>/up_vote' class="vote-question-button-up">&uarr;</a>
+
   </div>
   <div id="question-description">
     <p><%= @question.description %></p>
@@ -20,15 +22,20 @@
 
 <!-- Placeholder -->
 
-<h3>Answers</h3>
+<h3 class='h3-style'>Answers</h3>
+
 <section id="answer-container">
  <ul id="answers">
  <% @question.answers.each do |answer| %>
+ <div class="col-md-2"></div>
+    <article id="answer<%= answer.id %>">
+      <li>
 
     <%= erb :_answer, locals: { answer: answer} %>
 
         <!-- BELOW: coordinate route link with slice 4  -->
 
+        <br></br>
       </li>
     </article>
   <% end %>
@@ -36,6 +43,7 @@
 </section>
 
 <% if logged_in? %>
+
   <div class="col-md-2"></div><div class="col-md-8"><h3>Post New Answer</h3></div><div class="col-md-2"></div>
   <div class="col-md-2"></div>
   <div class="col-md-8">
@@ -43,7 +51,7 @@
   <section id="new-answer-container">
     <form method="post" action="/questions/<%=@question.id%>/answers">
       <textarea class="form-control" rows="3" name="description" placeholder="Post your answer here"></textarea>
-      <input type="submit" value="Submit">
+      <input type="submit" class="btn btn-info" value="Submit">
     </form>
   </section>
 </div></div>
