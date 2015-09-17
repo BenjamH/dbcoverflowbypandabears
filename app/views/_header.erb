@@ -1,1 +1,11 @@
-_header.erb
+<div id="main-header"></div>
+<h1 id="logo">DBCOverflow</h1>
+
+<% if current_user %>
+  <a href="/users/logout" class="right-button" >Logout</a>
+  <a href="/profiles/<%=@user.id%>" class="right-button" >My Profile</a>
+  <a href="/" class="right-button">Home</a>
+<% else %>
+  <a href="/users/login" class="right-button">Login</a>
+  <a href="/users/new" class="right-button">Register</a>
+<% end %>

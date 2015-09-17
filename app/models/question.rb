@@ -3,4 +3,8 @@ class Question < ActiveRecord::Base
   has_many :answers
   has_many :votes, as: :votable
 
+  def all_votes
+    votes.sum(:question_value)
+  end
+
 end

@@ -1,0 +1,49 @@
+<%= erb :_header %>
+
+<section id="question-container">
+  <div id="question-header">
+    <p>
+    <span id="question-title"><%= @question.title %></span>
+    <%  %>
+    <span id="question-author"><%= @question.user.first_name%></span>
+    <span id="question-date">Created at <%= @question.created_at.strftime("%m/%d/%Y") %></span>
+    </p>
+    <!-- BELOW: coordinate route link with slice 4  -->
+    Total votes: <span id="total-question-votes"><%= @question.all_votes %></span>
+    <a href='/questions/<%=@question.id %>/down_vote' class="vote-question-button-down">down</a>
+    <a href='/questions/<%=@question.id %>/up_vote' class="vote-question-button-up">&uarr;</a>
+
+  </div>
+  <div id="question-description">
+    <p><%= @question.description %></p>
+  </div>
+</section>
+
+<!-- Placeholder -->
+
+<h3>Answers</h3>
+<section id="answer-container">
+ <ul id="answers">
+ <% @question.answers.each do |answer| %>
+    <article id="answer<%= answer.id %>">
+      <li>
+        <span div="answer-description"><%= answer.description%></span>
+        <span div="answer-date">Created at <%= answer.created_at.strftime("%m/%d/%Y") %></span>
+
+        <!-- BELOW: coordinate route link with slice 4  -->
+        Total votes: <span id="total-answer-votes"><%= answer.all_votes %></span>
+        <a href='/answers/<%=answer.id %>/up_vote' class="vote-answer-button-up">&uarr;</a>
+
+      </li>
+    </article>
+  <% end %>
+ </div>
+</section>
+
+<h3>Post New Answer</h3>
+<section id="new-answer-container">
+  <form method="post" action="/questions/<%=@question.id%>/answers">
+    <input type="text" name="description">
+    <input type="submit" value="Submit">
+  </form>
+</section>

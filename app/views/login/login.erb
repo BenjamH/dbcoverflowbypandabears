@@ -1,0 +1,12 @@
+<%= erb :_header %>
+
+<h3>Welcome back!</h3>
+<h4>It's great to see you</h4>
+
+<div id="login-container">
+  <form id="login-form" method="POST" action="/users/session">
+      <input placeholder="Email" type="email" name="email"></br>
+      <input id="password-input" placeholder="Password" type="password" name="password"></br>
+    <input id="signup-input" type="submit" value="Login!">
+  </form>
+</div>

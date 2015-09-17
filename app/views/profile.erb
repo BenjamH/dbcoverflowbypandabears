@@ -1,0 +1,38 @@
+<%= erb :_header %>
+
+<p>
+  <div>
+    <%=@user.first_name %> <%=@user.last_name %>
+  </div>
+  <div>
+    Description: <%=@user.description%>
+  </div>
+  <div>
+    Member since <%=@user.created_at%>
+  </div>
+</p>
+
+<p class="subtitle">
+  Questions
+</p>
+
+<ul class="questions">
+  <% @user.questions.each do |question| %>
+    <li>
+      <span class="votes"> <%=question.votes.length%></span> | <a href="/questions/<%=question.id%>"> <%=question.title%></a>
+    </li>
+  <% end %>
+</ul>
+
+<p class="subtitle">
+  Answers
+</p>
+
+<ul class="answers">
+  <% @user.answers.each do |answer| %>
+    <li>
+      <span class="votes"> <%=answer.votes.length%></span> | <a href="/questions/<%=answer.question.id%>"><%=answer.description%></a>
+    </li>
+  <% end %>
+</ul>
+
