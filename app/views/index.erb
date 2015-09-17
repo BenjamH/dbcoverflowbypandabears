@@ -1,2 +1,16 @@
-<%= erb :_header %>
+<div class='clear'>
+  <% @questions.each do |question| %>
+    <div id="question-summary">
+      <div id="question-title"><a id="title-link" href ="/questions/<%= question.id%>"><%= question.title %></a></div>
+      <div id="number-answers"><%=question.answers.length %> answers</div>
+      <div id="number-votes"><%=question.votes.length %> votes</div>
+      <div id="question-author"><span>Asked by </span><a id="author-link" href ="/questions/<%= question.user.id%>"><%=question.user.first_name %></a></div>
+      <div id="question-date">Created on <%=question.created_at.strftime("%m/%d/%Y") %></div>
+    </div>
+  <% end %>
+</div>
 
+
+<% if current_user %>
+  <a href="/questions/new" class="bottom-right-button">Ask a question</a>
+<%end%>
