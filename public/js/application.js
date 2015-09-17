@@ -45,8 +45,6 @@ $(document).ready(function () {
       dataType: "json"
     })
     .done(function(response){
-      debugger
-      console.log("HI")
       var answer_obj = $("#answer" + response.id)
       $(answer_obj).find("#total-answer-votes").html(response.points)
     });
@@ -63,8 +61,6 @@ $(document).ready(function () {
       dataType: "json"
     })
     .done(function(response){
-      debugger
-      console.log("HI")
       var answer_obj = $("#answer" + response.id)
       $(answer_obj).find("#total-answer-votes").html(response.points)
     });

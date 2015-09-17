@@ -24,26 +24,24 @@
 
 <h3>Answers</h3>
 <section id="answer-container">
- <ul id="answers">
- <% @question.answers.each do |answer| %>
-    <article id="answer<%= answer.id %>">
-      <li>
-        <span div="answer-description"><%= answer.description%></span>
-        <span div="answer-date">Created at <%= answer.created_at.strftime("%m/%d/%Y") %></span>
+  <ul id="answers">
+    <% @question.answers.each do |answer| %>
+      <article id="answer<%= answer.id %>">
+        <li>
+          <span div="answer-description"><%= answer.description%></span>
+          <span div="answer-date">Created at <%= answer.created_at.strftime("%m/%d/%Y") %></span>
 
-        <!-- BELOW: coordinate route link with slice 4  -->
-        Total votes: <span id="total-answer-votes"><%= answer.all_votes %></span>
+          <!-- BELOW: coordinate route link with slice 4  -->
+          Total votes: <span id="total-answer-votes"><%= answer.all_votes %></span>
 
 
-        <% if logged_in? %>
-
-        <a href='/answers/<%=answer.id %>/up_vote' class="vote-answer-button-up">&uarr;</a>
-        <% end %>
-
-      </li>
-    </article>
-  <% end %>
- </div>
+          <% if logged_in? %>
+            <a href='/answers/<%=answer.id %>/up_vote' class="vote-answer-button-up">&uarr;</a>
+          <% end %>
+        </li>
+      </article>
+    <% end %>
+  </ul>
 </section>
 
 <% if logged_in? %>

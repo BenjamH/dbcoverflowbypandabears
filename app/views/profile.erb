@@ -38,7 +38,7 @@
       <th>Answers</th>
       <% @user.answers.each do |answer| %>
         <tr>
-          <td><span class="votes"> <%=answer.votes.length%></span> | '<%=answer.description%>' <a href="/questions/<%=answer.question.id%>"><%= answer.question.title %></a></td>
+          <td><span class="votes"> <%=answer.votes.length%></span> | '<%=answer.description%>' - <a href="/questions/<%=answer.question.id%>"><%= answer.question.title %></a></td>
         </tr>
       <% end %>
     </table>
