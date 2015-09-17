@@ -10,10 +10,8 @@
     Total votes: <span id="total-question-votes"><%= @question.all_votes %></span>
 
 
-    <% if logged_in? %>
       <a href='/questions/<%=@question.id %>/down_vote' class="vote-question-button-down">down</a>
     <a href='/questions/<%=@question.id %>/up_vote' class="vote-question-button-up">&uarr;</a>
-    <% end %>
   </div>
   <div id="question-description">
     <p><%= @question.description %></p>
@@ -30,13 +28,6 @@
     <%= erb :_answer, locals: { answer: answer} %>
 
         <!-- BELOW: coordinate route link with slice 4  -->
-        Total votes: <span id="total-answer-votes"><%= answer.all_votes %></span>
-
-
-        <% if logged_in? %>
-
-        <a href='/answers/<%=answer.id %>/up_vote' class="vote-answer-button-up">&uarr;</a>
-        <% end %>
 
       </li>
     </article>

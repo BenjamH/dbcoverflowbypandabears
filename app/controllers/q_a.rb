@@ -39,47 +39,53 @@ get '/questions/:question_id' do
 end
 
 post '/questions/:question_id/down_vote' do
-  p params
-  p "hit route"
+  question = Question.find(params[:question_id])
+
   if request.xhr?
-    question = Question.find(params[:question_id])
-    p "$"*80
-    question.votes.last.delete
-    points = question.votes.count
-    return {points: points}.to_json
+    if logged_in?
+      question.votes.last.delete
+      points = question.votes.count
+      return {points: points}.to_json
+    end
   else
     redirect "/questions/#{question.id}"
   end
 end
 
 post '/questions/:question_id/up_vote' do
-  if request.xhr?
-    question = Question.find(params[:question_id])
-    question.votes.create({question_value: 1, votable_type: "question"})
-    points = question.votes.count
-    return {points: points}.to_json
+  question = Question.find(params[:question_id])
+    if request.xhr?
+     if logged_in?
+      question.votes.create({question_value: 1, votable_type: "question"})
+      points = question.votes.count
+      return {points: points}.to_json
+    end
   else
     redirect "/questions/#{question.id}"
   end
 end
 
 post '/answers/:answer_id/up_vote' do
+  answer = Answer.find(params[:answer_id])
   if request.xhr?
-    answer = Answer.find(params[:answer_id])
-    answer.votes.create({answer_value: 1, votable_type: "answer"})
-    points = answer.votes.count
-    return {points: points, id: answer.id}.to_json
+    if logged_in?
+      answer.votes.create({answer_value: 1, votable_type: "answer"})
+      points = answer.votes.count
+      return {points: points, id: answer.id}.to_json
+    end
   else
     redirect "/questions/#{question.id}"
   end
 end
 
 post '/answers/:answer_id/down_vote' do
+  answer = Answer.find(params[:answer_id])
   if request.xhr?
-    answer = Answer.find(params[:answer_id])
-    answer.votes.create({answer_value: 1, votable_type: "answer"})
-    points = answer.votes.count
-    return {points: points, id: answer.id}.to_json
+    if logged_in?
+      answer.votes.create({answer_value: 1, votable_type: "answer"})
+      points = answer.votes.count
+      return {points: points, id: answer.id}.to_json
+    end
   else
     redirect "/questions/#{question.id}"
   end
