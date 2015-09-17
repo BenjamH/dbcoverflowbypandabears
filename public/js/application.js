@@ -26,18 +26,16 @@ var implementQuestionVoting = function() {
       dataType: "json"
     })
     .done(function(response){
-      var answer_obj = $("#answer" + response.id)
-      $(answer_obj).find("#total-answer-votes").html(response.points)
-      // $("#total-question-votes").html(response.points)
+      $("#total-question-votes").html(response.points)
 
     });
   })
 }
 
 var implementAnswerVoting = function() {
-    $(".answer-vote").on("click", function(event){
+    $('#answers').on("click", ".answer-vote", function(event){
       event.preventDefault();
-      var route = $(this).attr("href");
+      var route = $('#answers a').attr("href");
       $.ajax({
         url: route,
         type: "POST",
@@ -52,7 +50,7 @@ var implementAnswerVoting = function() {
 };
 
 var submitAnswer = function(){
-  $('form').on('submit', function(event){
+  $('form.answer-form').on('submit', function(event){
     event.preventDefault();
     console.log('sucess');
     var url = $(this).attr('action'),

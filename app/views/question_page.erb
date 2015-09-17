@@ -11,8 +11,8 @@
     <div class="col-md-2"></div>
     Total votes: <span id="total-question-votes"><%= @question.all_votes %></span>
 
-      <a href='/questions/<%=@question.id %>/down_vote' class="vote-question-button-down">down</a>
-    <a href='/questions/<%=@question.id %>/up_vote' class="vote-question-button-up">&uarr;</a>
+      <a href='/questions/<%=@question.id %>/up_vote' class="question-vote">&uarr;</a>
+      <a href='/questions/<%=@question.id %>/down_vote' class="question-vote">&darr;</a>
 
   </div>
   <div id="question-description">
@@ -49,7 +49,7 @@
   <div class="col-md-8">
   <div class="form-group">
   <section id="new-answer-container">
-    <form method="post" action="/questions/<%=@question.id%>/answers">
+    <form class='answer-form' method="post" action="/questions/<%=@question.id%>/answers">
       <textarea class="form-control" rows="3" name="description" placeholder="Post your answer here"></textarea>
       <input type="submit" class="btn btn-info" value="Submit">
     </form>
