@@ -26,7 +26,10 @@ var implementQuestionVoting = function() {
       dataType: "json"
     })
     .done(function(response){
-      $("#total-question-votes").html(response.points)
+      var answer_obj = $("#answer" + response.id)
+      $(answer_obj).find("#total-answer-votes").html(response.points)
+      // $("#total-question-votes").html(response.points)
+
     });
   })
 }
@@ -66,7 +69,7 @@ var submitAnswer = function(){
 
     .done(function(response){
       $('ul#answers').append(response);
-      $('form input[type=text]').val("");
+      $('form textarea').val("");
       $('.fa-spinner').remove();
     })
 
