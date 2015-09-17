@@ -24,9 +24,8 @@ end
 
 
 get '/questions/:question_id' do
-  p params[:question_id]
   @question =  Question.find(params[:question_id])
-  erb :'question_page'
+  erb :question_page
 end
 
 post '/questions/:question_id/down_vote' do
@@ -34,7 +33,8 @@ post '/questions/:question_id/down_vote' do
   p "hit route"
   if request.xhr?
     question = Question.find(params[:question_id])
-    p question.votes.delete(Vote.last)
+    p "$"*80
+    question.votes.last.delete
     points = question.votes.count
     return {points: points}.to_json
   else
@@ -54,6 +54,17 @@ post '/questions/:question_id/up_vote' do
 end
 
 post '/answers/:answer_id/up_vote' do
+  if request.xhr?
+    answer = Answer.find(params[:answer_id])
+    answer.votes.create({answer_value: 1, votable_type: "answer"})
+    points = answer.votes.count
+    return {points: points, id: answer.id}.to_json
+  else
+    redirect "/questions/#{question.id}"
+  end
+end
+
+post '/answers/:answer_id/down_vote' do
   if request.xhr?
     answer = Answer.find(params[:answer_id])
     answer.votes.create({answer_value: 1, votable_type: "answer"})

@@ -1,6 +1,4 @@
-<%= erb :_header %>
-
-<section id="question-container">
+<section id="question-container" class='clear'>
   <div id="question-header">
     <p>
     <span id="question-title"><%= @question.title %></span>
@@ -10,9 +8,12 @@
     </p>
     <!-- BELOW: coordinate route link with slice 4  -->
     Total votes: <span id="total-question-votes"><%= @question.all_votes %></span>
-    <a href='/questions/<%=@question.id %>/down_vote' class="vote-question-button-down">down</a>
-    <a href='/questions/<%=@question.id %>/up_vote' class="vote-question-button-up">&uarr;</a>
 
+
+    <% if logged_in? %>
+      <a href='/questions/<%=@question.id %>/down_vote' class="vote-question-button-down">down</a>
+    <a href='/questions/<%=@question.id %>/up_vote' class="vote-question-button-up">&uarr;</a>
+    <% end %>
   </div>
   <div id="question-description">
     <p><%= @question.description %></p>
@@ -32,7 +33,12 @@
 
         <!-- BELOW: coordinate route link with slice 4  -->
         Total votes: <span id="total-answer-votes"><%= answer.all_votes %></span>
+
+
+        <% if logged_in? %>
+
         <a href='/answers/<%=answer.id %>/up_vote' class="vote-answer-button-up">&uarr;</a>
+        <% end %>
 
       </li>
     </article>
@@ -40,10 +46,17 @@
  </div>
 </section>
 
-<h3>Post New Answer</h3>
-<section id="new-answer-container">
-  <form method="post" action="/questions/<%=@question.id%>/answers">
-    <input type="text" name="description">
-    <input type="submit" value="Submit">
-  </form>
-</section>
+<% if logged_in? %>
+  <div class="col-md-2"></div><div class="col-md-8"><h3>Post New Answer</h3></div><div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+  <div class="form-group">
+  <section id="new-answer-container">
+    <form method="post" action="/questions/<%=@question.id%>/answers">
+      <textarea class="form-control" rows="3" name="description" placeholder="Post your answer here"></textarea>
+      <input type="submit" value="Submit">
+    </form>
+  </section>
+</div></div>
+<div class="col-md-2"></div>
+<% end %>

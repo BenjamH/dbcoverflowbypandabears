@@ -1,38 +1,41 @@
-<%= erb :_header %>
-
-<p>
+<p class='clear'>
   <div>
-    <%=@user.first_name %> <%=@user.last_name %>
+    <h4><%=@user.first_name %> <%=@user.last_name %></h4>
   </div>
   <div>
-    Description: <%=@user.description%>
+    About Me: <%=@user.description%>
   </div>
   <div>
     Member since <%=@user.created_at%>
   </div>
 </p>
 
-<p class="subtitle">
-  Questions
-</p>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-1"></div>
 
-<ul class="questions">
-  <% @user.questions.each do |question| %>
-    <li>
-      <span class="votes"> <%=question.votes.length%></span> | <a href="/questions/<%=question.id%>"> <%=question.title%></a>
-    </li>
-  <% end %>
-</ul>
+  <div class="col-md-4">
+    <table>
+      <th>Questions</th>
+      <% @user.questions.each do |question| %>
+        <tr>
+          <td><span class="votes"> <%=question.votes.length%></span> | <a href="/questions/<%=question.id%>"> <%=question.title%></a></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 
-<p class="subtitle">
-  Answers
-</p>
+  <div class="col-md-4">
+    <table>
+      <th>Answers</th>
+      <% @user.answers.each do |answer| %>
+        <tr>
+          <td><span class="votes"> <%=answer.votes.length%></span> | '<%=answer.description%>' <a href="/questions/<%=answer.question.id%>"><%= answer.question.title %></a></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 
-<ul class="answers">
-  <% @user.answers.each do |answer| %>
-    <li>
-      <span class="votes"> <%=answer.votes.length%></span> | <a href="/questions/<%=answer.question.id%>"><%=answer.description%></a>
-    </li>
-  <% end %>
-</ul>
-
+  <div class="col-md-1"></div>
+  <div class="col-md-1"></div>
+</div>

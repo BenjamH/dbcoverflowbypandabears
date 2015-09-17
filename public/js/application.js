@@ -54,7 +54,21 @@ $(document).ready(function () {
 
 
   // vote DOWN ANSWER
-
+  $(".vote-answer-button-down").on("click", function(event){
+    event.preventDefault();
+    var route = $(this).attr("href");
+    $.ajax({
+      url: route,
+      type: "POST",
+      dataType: "json"
+    })
+    .done(function(response){
+      debugger
+      console.log("HI")
+      var answer_obj = $("#answer" + response.id)
+      $(answer_obj).find("#total-answer-votes").html(response.points)
+    });
+  });
 
 
 
