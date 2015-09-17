@@ -170,3 +170,7 @@ a:link {
 .no-bullet {
   list-style: none;
 }
+
+#divider {
+  height: 3em;
+}
