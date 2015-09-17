@@ -82,7 +82,7 @@ post '/answers/:answer_id/down_vote' do
   answer = Answer.find(params[:answer_id])
   if request.xhr?
     if logged_in?
-      answer.votes.create({answer_value: 1, votable_type: "answer"})
+      answer.votes.last.delete
       points = answer.votes.count
       return {points: points, id: answer.id}.to_json
     end

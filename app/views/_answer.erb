@@ -2,9 +2,8 @@
 <li>
   <span div="answer-description"><%= answer.description%></span>
   <span div="answer-date">Created at <%= answer.created_at.strftime("%m/%d/%Y") %></span>
-
-  <!-- BELOW: coordinate route link with slice 4  -->
   Total votes: <span id="total-answer-votes"><%= answer.all_votes %></span>
-  <a href='/answers/<%=answer.id %>/up_vote' class="vote-answer-button-up">&uarr;</a>
+  <a href='/answers/<%=answer.id %>/up_vote' class="answer-vote">&uarr;</a>
+  <a href='/answers/<%=answer.id %>/down_vote' class="answer-vote">&darr;</a>
 </li>
 </article>
